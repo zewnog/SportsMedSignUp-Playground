@@ -1,0 +1,358 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Open Athletic Training Shifts</title>
+
+<!-- ✅ Mobile scaling -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+
+/* ✅FILTERS */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filters input,
+.filters select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.filters input {
+  flex: 1;
+  min-width: 220px;
+}
+
+.filters select {
+  min-width: 180px;
+}
+
+/* ✅SORTABLE HEADERS */
+.sortable {
+  cursor: pointer;
+}
+
+.sortable:hover {
+  background-color: #005caa;
+}
+`
+
+/* ✅ PAGE */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background-color: #FFFDEF;
+}
+
+/* ✅ TABLE BASE */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+  min-width: 900px;
+}
+
+/* ✅ CELLS */
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+}
+
+/* ✅ HEADER */
+th {
+  background-color: #004279;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  font-size: 12px;
+}
+
+/* ✅ ROW STRIPES */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* ✅ HOVER */
+tr:hover {
+  background-color: #e6f2ff;
+}
+
+/* ✅ FREEZE FIRST COLUMN */
+th:nth-child(1), td:nth-child(1) {
+  position: sticky;
+  left: 0;
+  background-color: white;
+  z-index: 2;
+}
+
+/* ✅ KEEP HEADER ABOVE */
+th:nth-child(1) {
+  z-index: 4;
+  background-color: #004279;
+}
+
+/* ✅ TITLE */
+h1 {
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+
+/* ✅ CENTER COLUMNS */
+th:nth-child(2), td:nth-child(2),
+th:nth-child(6), td:nth-child(6) {
+  text-align: center;
+}
+
+/* ✅ MOBILE OPTIMIZATION */
+@media screen and (max-width: 768px) {
+
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  th, td {
+    font-size: 11px;
+    padding: 6px;
+  }
+
+  table {
+    min-width: 800px;
+  }
+
+  .banner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .banner img {
+    height: 55px;
+  }
+
+}
+
+/* ✅ ✅ SMOOTH SCROLL (THIS IS THE KEY ADD) */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+</style>
+
+</head>
+
+<!-- ✅ Auto refresh every 1 minutes (plus the flow runs whenever a change has has been made) -->
+<script>
+  
+setInterval(function() {
+  location.reload();
+}, 10000);
+
+</script>
+
+<body>
+
+<!-- ✅ TOP BANNER -->
+<div class="banner" style="
+  background-color:#004279;
+  padding:20px 25px;
+  border-radius:8px 8px 0 0;
+  display:flex;
+  align-items:center;
+  gap:20px;
+">
+
+  <img src="https://raw.githubusercontent.com/zewnog/SportsMedSignUp/main/St%20LUkes%20Multi%20COlor%20logo.png" style="height:75px;">
+
+  <div style="color:#f5f7fb; font-size:32px; font-weight:bold;">
+    Sports Medicine Sign Ups
+  </div>
+
+</div>
+
+<!-- ✅ CONTENT CARD -->
+<div style="background:white; padding:20px; border-radius:0 0 8px 8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+
+<h1>Open Shifts for Sign Up</h1>
+
+
+<p style="margin-top:10px; margin-bottom:15px; color:#555; font-size:12px;">
+⏱ Last Updated: October 3, 2026 • 7:32 PM
+<br>
+🔄 Updates automatically (typically within ~1 minute of changes)
+</p>
+
+
+<!-- ✅ ✅ SCROLL WRAPPER (UPDATED) -->
+<div class="filters">
+  <input
+    type="text"
+    id="tableSearch"
+    placeholder="🔍 Search all shifts..."
+  >
+
+  <select id="sportFilter">
+    <option value="">All Sports</option>
+  </select>
+
+</div>
+<div class="table-wrapper">
+
+<table><thead><tr><th>Date</th><th>Times</th><th>Organization</th><th>Event Name</th><th>Location</th><th>Sign Up Link</th><th>Sport</th><th>Point Person</th><th>Add&#39;l Details</th></tr></thead><tbody><tr><td>10/10/2026 (Saturday)</td><td>11:00 AM to 5:00 PM</td><td>&#127943; Pen Argyl</td><td>Fall Sports Coverage</td><td>501 W Laurel Ave, Pen Argyl, PA 18072</td><td>https://forms.office.com/Pages/ResponsePage.aspx?id=-NJP75ZMq0WbFXgxkg9Vz6BeesZ4855HlzsoKTdcgV5UOUxWQzlJWTI0SlpZQ1pQRlQxTTU2WlhRQi4u&amp;r20ed42c6c3664085bdeb35d1fa757913=445</td><td>&#127944; Football</td><td>Markley, Stasia</td><td>varsity football game coverage</td></tr></tbody></table>
+
+
+</div>
+
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  var table = document.querySelector("table");
+
+  if (!table) return;
+
+  // Convert Sign Up URL into clickable link
+  for (var i = 1; i < table.rows.length; i++) {
+
+    var cell = table.rows[i].cells[5];
+
+    if (!cell) continue;
+
+    var url = cell.textContent.trim();
+
+    if (url.startsWith("http")) {
+
+      cell.innerHTML =
+        '<a href="' + url +
+        '" target="_blank" style="color:#005A9C;text-decoration:none;font-weight:bold;white-space:nowrap;">📝 Sign Up</a>';
+
+    }
+  }
+
+  // Build Sport Dropdown
+  var sportFilter = document.getElementById("sportFilter");
+  var sports = new Set();
+
+  for (var i = 1; i < table.rows.length; i++) {
+
+    var sportCell = table.rows[i].cells[6];
+
+    if (sportCell) {
+      sports.add(sportCell.textContent.trim());
+    }
+  }
+
+  Array.from(sports)
+    .sort()
+    .forEach(function(sport) {
+
+      var option = document.createElement("option");
+
+      option.value = sport;
+      option.textContent = sport;
+
+      sportFilter.appendChild(option);
+
+    });
+
+  // Search + Filter
+  function filterTable() {
+
+    var search =
+      document
+        .getElementById("tableSearch")
+        .value
+        .toLowerCase();
+
+    var sport =
+      sportFilter.value.toLowerCase();
+
+    for (var i = 1; i < table.rows.length; i++) {
+
+      var row = table.rows[i];
+
+      var rowText =
+        row.textContent.toLowerCase();
+
+      var rowSport =
+        row.cells[6].textContent.toLowerCase();
+
+      var searchMatch =
+        rowText.indexOf(search) > -1;
+
+      var sportMatch =
+        sport === "" ||
+        rowSport === sport;
+
+      row.style.display =
+        (searchMatch && sportMatch)
+          ? ""
+          : "none";
+
+    }
+  }
+
+  document
+    .getElementById("tableSearch")
+    .addEventListener("keyup", filterTable);
+
+  sportFilter
+    .addEventListener("change", filterTable);
+
+  // Sortable Columns
+  var headers = table.querySelectorAll("th");
+
+  headers.forEach(function(header, index) {
+
+    header.classList.add("sortable");
+
+    header.addEventListener("click", function() {
+
+      var rows =
+        Array.from(table.rows).slice(1);
+
+      var ascending =
+        header.dataset.order !== "asc";
+
+      rows.sort(function(a, b) {
+
+        var A =
+          a.cells[index].textContent.trim();
+
+        var B =
+          b.cells[index].textContent.trim();
+
+        return ascending
+          ? A.localeCompare(B)
+          : B.localeCompare(A);
+
+      });
+
+      rows.forEach(function(row) {
+        table.tBodies[0].appendChild(row);
+      });
+
+      header.dataset.order =
+        ascending ? "asc" : "desc";
+
+    });
+
+  });
+
+});
+</script>
+</body>
+</html>
