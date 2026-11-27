@@ -190,7 +190,7 @@ setInterval(function() {
 
 
 <p style="margin-top:10px; margin-bottom:15px; color:#555; font-size:12px;">
-⏱ Last Updated: November 27, 2026 • 12:00 PM
+⏱ Last Updated: November 27, 2026 • 2:31 PM
 <br>
 🔄 Updates automatically (typically within ~2 minute of changes)
 </p>
@@ -265,6 +265,8 @@ document.addEventListener("DOMContentLoaded", function() {
   // ✅Build Sport Dropdown
   var sportFilter = document.getElementById("sportFilter");
   var audienceFilter = document.getElementById("audienceFilter");
+
+
   var sports = new Set();
 
   for (var i = 1; i < table.rows.length; i++) {
@@ -338,10 +340,17 @@ rowAudience === audience;
     .getElementById("tableSearch")
     .addEventListener("keyup", filterTable);
 
-  sportFilter
-    .addEventListener("change", filterTable);
-audienceFilter 
-.addEventListener("change", filterTable);
+sportFilter.addEventListener("change", function() {
+    localStorage.setItem("sportFilter", this.value);
+    filterTable();
+});
+
+audienceFilter.addEventListener("change", function() {
+    localStorage.setItem("audienceFilter", this.value);
+    filterTable();
+});
+
+
 filterTable();
 
 //✅ Build Audience Dropdown
@@ -364,7 +373,17 @@ Array.from(audiences)
       option.textContent = audience; 
       audienceFilter.appendChild(option); 
 });
+//✅Restore saved filters
+var savedSport = localStorage.getItem("sportFilter");
+var savedAudience = localStorage.getItem("audienceFilter");
 
+if (savedSport) {
+    sportFilter.value = savedSport;
+}
+
+if (savedAudience) {
+    audienceFilter.value = savedAudience;
+}
   // ✅Sortable Columns
   var headers = table.querySelectorAll("th");
 
